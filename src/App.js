@@ -1,23 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
+import { Routes, Route } from "react-router-dom";
+import Loginpage from "./Auth/login"
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" element={<Loginpage />} />
+
+        {/* <Route path="/select-category/:name/:link" element={<SelectCategoryPage />} />
+
+        <Route path="/game/:name/:link" element={<MainGamePage />} />
+
+        <Route path="/wait/:link/:name" element={<MultiplayerEnterName />} /> */}
+
+
+
+
+        {/* Add more routes as needed */}
+      </Routes>
     </div>
   );
 }
