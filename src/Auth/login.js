@@ -14,7 +14,7 @@ function Login () {
                     <p class="border-2 bg-white h-0 w-32 "></p>
                   </div>
 
-                       <p className=" mx-80 mt-2 max-sm:mx-0">Welcome to our portal! Please enter your login credentials to access your account. If you don’t have an account yet, please <Link href="/signup" className="text-red-500">sign up</Link> to get started.</p>
+                       <p className=" mx-80 mt-2 max-sm:mx-0 ">Welcome to our portal! Please enter your login credentials to access your account. If you don’t have an account yet, please <Link href="/signup" className="text-red-500">sign up</Link> to get started.</p>
 
 
                  </div>
@@ -47,7 +47,7 @@ function Login () {
                     </div>
 
                     <div className="mt-10 mb-5">
-                        <Link className="ml-10 underline max-sm:ml-0">Register</Link>
+                        <Link to="/signup"  className="ml-10 underline max-sm:ml-0">Register</Link>
 
                         <Link className="float-right mr-40 underline max-sm:mr-10">forgot password?</Link>
                     </div>

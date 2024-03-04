@@ -1,7 +1,9 @@
-import logo from './logo.svg';
+
 import './App.css';
 import { Routes, Route } from "react-router-dom";
 import Loginpage from "./Auth/login"
+import Signup from "./Auth/signup"
+
 
 function App() {
   return (
@@ -9,9 +11,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Loginpage />} />
 
-        {/* <Route path="/select-category/:name/:link" element={<SelectCategoryPage />} />
+        <Route path="/signup" element={<Signup />} />
 
-        <Route path="/game/:name/:link" element={<MainGamePage />} />
+        {/* <Route path="/game/:name/:link" element={<MainGamePage />} />
 
         <Route path="/wait/:link/:name" element={<MultiplayerEnterName />} /> */}
 

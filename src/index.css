@@ -23,7 +23,7 @@ code {
 .background-image{
   background-image: url("./public/wa56.jpg");
   width: 100%;
-  height: 250px;
+  height: 270px;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -34,12 +34,17 @@ code {
 .gg{
   background-color: #1A3642DE;
 
-  height: 250px;
+  height: 270px;
   opacity: 0.89;
   padding: 60px 0px 60px 0px;
 
 }
 
+@media not all and (min-width: 640px){
+.gg {
+  height: 100%;
+    padding-bottom: 0.5rem;
+}}
 .group {
   display: flex;
   line-height: 30px;
@@ -73,7 +78,7 @@ code {
 
 .icon {
   position: absolute;
-  
+
   fill: none;
   width: 1rem;
   height: 2rem;
