@@ -3,6 +3,7 @@ import './App.css';
 import { Routes, Route } from "react-router-dom";
 import Loginpage from "./Auth/login"
 import Signup from "./Auth/signup"
+import Dashboard from './dashboard';
 
 
 function App() {
@@ -13,9 +14,9 @@ function App() {
 
         <Route path="/signup" element={<Signup />} />
 
-        {/* <Route path="/game/:name/:link" element={<MainGamePage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
 
-        <Route path="/wait/:link/:name" element={<MultiplayerEnterName />} /> */}
+        {/* <Route path="/wait/:link/:name" element={<MultiplayerEnterName />} /> */}
 
 
 
