@@ -14,7 +14,7 @@ function App() {
 
         <Route path="/signup" element={<Signup />} />
 
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="dashboard/*" element={<Dashboard />} />
 
         {/* <Route path="/wait/:link/:name" element={<MultiplayerEnterName />} /> */}
 
