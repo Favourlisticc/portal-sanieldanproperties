@@ -58,7 +58,7 @@ export default function Admin(props) {
 
   document.documentElement.dir = "ltr";
   return (
-    <div className="flex h-full w-full">
+    <div className="flex h-full w-full bg-blue-50">
       <Sidebar open={open} onClose={() => setOpen(false)} />
       {/* Navbar & Main Content */}
       <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900">

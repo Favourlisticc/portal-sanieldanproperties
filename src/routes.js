@@ -1,12 +1,12 @@
 import React from "react";
 
 // dashboard Imports
+import Maindashboard from "./dashboard/others/main"
 import Teammate from "./dashboard/others/teammates"
 import Referrallink from "./dashboard/others/refferrallink"
 import Productsdetails from "./dashboard/others/productsdetails"
 import Payoutdetails from "./dashboard/others/payoutdetails"
 import Profile from "./dashboard/others/profile"
-import Maindashboard from "./dashboard/others/main"
 
 
 

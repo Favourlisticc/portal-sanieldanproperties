@@ -4,6 +4,8 @@ import { HiX } from "react-icons/hi";
 import Links from "./links";
 import routes from "../routes";
 
+import logo from "../public/sanieldan-logo-1-768x144.png"
+
 
 const Sidebar = ({ open, onClose }) => {
   return (
@@ -19,9 +21,9 @@ const Sidebar = ({ open, onClose }) => {
         <HiX />
       </span>
 
-      <div className={`mx-[56px] mt-[50px] flex items-center`}>
+      <div className={`mx-[52px] mt-[20px] flex items-center`}>
         <div className="mt-1 ml-1 h-2.5 font-poppins text-[26px] font-bold uppercase text-navy-700 dark:text-white">
-          Horizon <span class="font-medium">FREE</span>
+          <img src={logo} alt="Logo" className="w-48"/>
         </div>
       </div>
       <div class="mt-[58px] mb-7 h-px bg-gray-300 dark:bg-white/30" />
