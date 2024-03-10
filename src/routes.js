@@ -20,7 +20,7 @@ import {
 
 const routes = [
   {
-    name: "Main Dashboard",
+    name: "Dashboard",
     layout: "/dashboard",
     path: "main",
     icon: <MdHome className="h-6 w-6" />,
