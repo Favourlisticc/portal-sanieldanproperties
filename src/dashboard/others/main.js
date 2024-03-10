@@ -1,8 +1,9 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
 const Dashboard = () => {
     return(
-        <div className="mt-10">
+        <div className="mt-10 ">
             <div className="flex justify-between mb-10">
 
             <div className=" bg-white rounded-md p-3 text-black w-1/2 h-24 mr-3">
@@ -49,6 +50,72 @@ const Dashboard = () => {
 
 
             </div>
+
+            <p className="text-left mt-5 dark:text-white/30">You can learn more about Affiliate program and to start earning referrals <Link href="/Learn more" className="text-red-500 underline">here</Link> </p>
+
+            <div className="flex mt-5">
+
+                <div className="bg-white p-2 w-2/3  rounded-md">
+                    <p className="text-left flex text-blue-700 font-bold">Earn Overview <p className=" text-gray-500 font-normal"> (for Last 30 days)</p></p>
+                    <p className="text-left">Line Graph for Earnings back to 30 days.</p>
+
+                    <hr className="mt-72 mb-1"/>
+
+                    <div className="flex">
+                    <div>
+                        <p>Total Earnings</p>
+                        <p className="font-bold mt-5">0.00NGN</p>
+                    </div>
+
+
+
+                    <div className=" border-l ml-5 pl-5">
+                        <p>Clicks</p>
+                        <p className="font-bold mt-5">0</p>
+                    </div>
+                    </div>
+                </div>
+
+                <div className="bg-white rounded-md ml-10 w-96">
+                <h2 className="pt-3 pl-5 font-bold text-blue-800 text-left mb-3">Summary for This Month</h2>
+
+                <hr/>
+
+                <div className="">
+                    <div className="flex  mt-1.5 mb-1.5">
+                        <p>Total Referrals: </p>
+                        <p>0</p>
+                    </div>
+                    <hr/>
+
+                    <div className="flex  mt-1.5 mb-1.5">
+                        <p>Total Earnings: </p>
+                        <p>0.00NGN</p>
+                    </div>
+                    <hr/>
+
+                    <div className="flex  mt-1.5 mb-1.5">
+                        <p>UnVerified Referrals: </p>
+                        <p>0</p>
+                    </div>
+                    <hr/>
+
+                    <div className="flex mt-1.5 mb-1.5">
+                        <p>Clicks: </p>
+                        <p>0</p>
+                    </div>
+                    <hr/>
+
+                    <div className="flex mt-1.5 mb-1.5">
+                        <p>Conversion: </p>
+                        <p>0%</p>
+                    </div>
+                    <hr/>
+                </div>
+                </div>
+            </div>
+
+
         </div>
     )
 }
