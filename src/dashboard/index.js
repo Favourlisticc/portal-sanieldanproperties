@@ -76,7 +76,7 @@ export default function Admin(props) {
               {...rest}
               
             />
-            <div className="pt-5s mx-auto mb-auto h-full min-h-[84vh] p-2 sm-max:p-0 md:pr-2 flex ">
+            <div className="pt-5s mx-auto mb-auto h-full min-h-[84vh] p-2 max-sm:p-0 md:pr-2 flex ">
               <Routes>
                 {getRoutes(routes)}
 
