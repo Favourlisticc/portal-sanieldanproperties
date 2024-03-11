@@ -10,6 +10,7 @@ function Login () {
     const [usernamematch, setUsernameMatch] = useState('');
     const [passwordempty, setPasswordEmpty] = useState('');
     const [passwordmatch, setPasswordMatch] = useState('');
+    const [user, setUser] = useState(null);
     const [error, setError] = useState('');
 
     const [formData, setFormData] = useState({
@@ -48,6 +49,7 @@ function Login () {
                 const data = await response.json(); // Assuming response contains JSON data
                 console.log('Login successful:', data);
                 // Handle successful signup, e.g., redirect user to another page or show a success message
+                setUser(data)
                 navigate("/dashboard");
             } else {
                 const responseData = await response.json();
