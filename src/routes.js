@@ -43,18 +43,18 @@ const routes = [
     component: <Referrallink />,
   },
   {
-    name: "Payout Details",
-    layout: "/dashboard",
-    path: "payout-details",
-    icon: <MdPerson className="h-6 w-6" />,
-    component: <Payoutdetails />,
-  },
-  {
     name: "Products Details",
     layout: "/dashboard",
     path: "products-details",
     icon: <MdPerson className="h-6 w-6" />,
     component: <Productsdetails />,
+  },
+  {
+    name: "Payout Details",
+    layout: "/dashboard",
+    path: "payout-details",
+    icon: <MdPerson className="h-6 w-6" />,
+    component: <Payoutdetails />,
   },
   {
     name: "Profile",
