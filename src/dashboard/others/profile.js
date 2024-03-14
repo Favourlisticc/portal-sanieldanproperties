@@ -65,6 +65,18 @@ function Profile() {
         }
       };
 
+      const updateUser = async () => {
+        try {
+            await axios.put(`/api/update-user/${user._id}`, user);
+            setInitialUser(user); // Update initialUser with the updated user data
+            setIsChanged(false); // Reset isChanged to false after successful update
+            // Optionally, you can show a success message to the user
+            setSuccess("User data updated successfully!");
+        } catch (error) {
+            console.error('Error updating user data:', error);
+            // Handle error state or display error message to the user
+        }
+    };
 
     return(
         <div className="mt-16">
@@ -115,13 +127,14 @@ function Profile() {
 
                 <div>
                 <button
-            className={`mt-5 py-2 px-4 rounded ${
-              isChanged ? "bg-blue-500 hover:bg-blue-700 text-white font-bold" : "bg-gray-300 text-gray-700"
-            }`}
-            disabled={!isChanged} // Disable button if no changes
-          >
-            Save Changes
-          </button>
+                        className={`mt-5 py-2 px-4 rounded ${
+                        isChanged ? "bg-blue-500 hover:bg-blue-700 text-white font-bold" : "bg-gray-300 text-gray-700"
+                        }`}
+                        disabled={!isChanged} // Disable button if no changes
+                        onClick={updateUser}
+                    >
+                        Save Changes
+                </button>
                 </div>
 
            </div>
