@@ -229,8 +229,8 @@ const Navbar = (props) => {
               button={
                 <img
                   className="h-10 w-10 rounded-full"
-                  src={avatar}
-                  alt="Elon Musk"
+                  src={`http://localhost:3001/${user.image}`}
+                  alt=""
                 />
               }
               children={

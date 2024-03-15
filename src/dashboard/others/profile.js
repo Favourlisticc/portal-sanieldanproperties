@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, } from "react-router-dom"
 import CountrySelect from "../../countryselect";
+import axios from "axios";
 
 function Profile() {
     const navigate =useNavigate()
@@ -10,12 +11,10 @@ function Profile() {
     const [file, setFile] = useState();
     const [isChanged, setIsChanged] = useState(false);
     const [initialUser, setInitialUser] = useState(""); // Added state to store initial user data
+    const [error, setError] = useState('');
 
-    function handleChange(e) {
-        console.log(e.target.files);
-        setFile(URL.createObjectURL(e.target.files[0]));
-    }
-  
+
+
   
   
     const config = {
@@ -41,7 +40,7 @@ function Profile() {
           // Handle error state or display error message to the user
         }
       };
-  
+
       fetchUserData();
     }, [navigate]);
 
@@ -61,25 +60,64 @@ function Profile() {
         if (value !== initialUser[name]) {
           setIsChanged(true); // If different, enable the button
         } else {
+
           setIsChanged(false); // If same, disable the button
         }
       };
 
+      const handleChange = (e) => {
+        const file = e.target.files[0];
+        const imageUrl = URL.createObjectURL(file);
+        setFile(imageUrl);
+        setIsChanged(true);
+    };
+
       const updateUser = async () => {
         try {
-            await axios.put(`/api/update-user/${user._id}`, user);
+            const formData = new FormData();
+            formData.append("image", file); // Append the image file to FormData
+
+            // Append other user data to FormData if needed
+                formData.append("email", user.email);
+                formData.append("firstName", user.firstName);
+                formData.append("lastName", user.lastName);
+                formData.append("country", user.country);
+
+
+            await axios.put(`http://localhost:3001/dashbaord/api/update-user/${user._id}`, formData, config);
             setInitialUser(user); // Update initialUser with the updated user data
             setIsChanged(false); // Reset isChanged to false after successful update
             // Optionally, you can show a success message to the user
             setSuccess("User data updated successfully!");
         } catch (error) {
-            console.error('Error updating user data:', error);
+            setError(error.response.data.error);
+            console.log('Error updating user data:', error);
             // Handle error state or display error message to the user
         }
     };
 
     return(
         <div className="mt-16">
+            {error && (
+                    <div
+                    id="pop-up"
+                    style={{ zIndex: 9999, borderTopWidth: "6px" }}
+                    class="fixed border-red-600 shadow-xl bg-white mt-24 xl:mt-28 mr-4 max-w-xs top-0 right-0 py-2 px-3"
+                    >
+                    <h2 class="font-bold tracking-wider">Login Failed</h2>
+                    <p class="text-sm text-left tracking-wider pt-1">{error}</p>
+                    </div>
+                )}
+            {success && (
+                    <div
+                    id="pop-up"
+                    style={{ zIndex: 9999, borderTopWidth: "6px" }}
+                    class="fixed  border-green-600 shadow-xl bg-white mt-24 xl:mt-28 mr-4 max-w-xs top-0 right-0 py-2 px-3"
+                    >
+                    <h2 class="font-bold tracking-wider">Account Setup</h2>
+                    <p class="text-sm text-left tracking-wider pt-1">{success}</p>
+                    </div>
+                )}
            <h1 className="text-left mb-10 font-semibold text-xl">Edit Your Account</h1>
 
            <div>
@@ -114,7 +152,7 @@ function Profile() {
 
                 <div className="mt-5">
                  <div className="">
-                 <img src={file} alt="profilepicture" className="w-26 h-20 rounded-md"/>
+                 <img src={file} alt="profilepicture" className="w-26 h-20 rounded-md"value={user.image}/>
                  </div>
                   <div className="text-left mt-1">
 
