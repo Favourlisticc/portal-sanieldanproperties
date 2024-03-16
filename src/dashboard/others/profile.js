@@ -83,7 +83,7 @@ function Profile() {
           formData.append("country", user.country);
           formData.append("phoneNumber", user.phoneNumber);
   
-          await axios.put(`http://localhost:3001/dashboard/api/update-user/${user._id}`, formData, config);
+          await axios.put(`https://portal-sanieldanproperties-api.onrender.com/dashboard/api/update-user/${user._id}`, formData, config);
           setInitialUser(user); // Update initialUser with the updated user data
           setIsChanged(false); // Reset isChanged to false after successful update
           // Show success message
@@ -177,7 +177,7 @@ function Profile() {
                     </div>
                 </div> */}
 
-                <div>
+                <div className="text-left">
                 <button
                         className={`mt-5 py-2 px-4 rounded ${
                         isChanged ? "bg-blue-500 hover:bg-blue-700 text-white font-bold" : "bg-gray-300 text-gray-700"

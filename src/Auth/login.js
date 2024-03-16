@@ -30,7 +30,8 @@ function Login () {
     
         try {
           const { data } = await axios.post(
-            "http://localhost:3001/auth/login",
+            // "http://localhost:3001/auth/login",
+            "https://portal-sanieldanproperties-api.onrender.com/auth/login",
             { username, password },
             config
           );
@@ -115,7 +116,7 @@ function Login () {
                     <h1 className="mt-5 text-red-600 text-4xl font-semibold ">Log In</h1>
 
                     <div className="group mt-5 flex justify-center ">
-                        <svg class="icon left-20 max-sm:left-5" xmlns="http://www.w3.org/2000/svg" width="30" height="32" viewBox="0 0 24 24" fill="#0000"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM20.59 22c0-3.87-3.85-7-8.59-7s-8.59 3.13-8.59 7" stroke="red" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <svg class="icon left-16 max-sm:left-2" xmlns="http://www.w3.org/2000/svg" width="30" height="32" viewBox="0 0 24 24" fill="#0000"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM20.59 22c0-3.87-3.85-7-8.59-7s-8.59 3.13-8.59 7" stroke="red" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                         <input className="input w-4/5 max-sm:w-full" type="text" placeholder="Username" name="username"  onChange={(e) => {setUsername(e.target.value);}} required   value={username}  />
                     </div>
                     {/* {usernameempty && <p className="text-red-500 mb-3 absolute" style={{zIndex: "999"}}>{usernameempty}</p>}
@@ -123,7 +124,7 @@ function Login () {
 
 
                     <div className="group mt-5 flex justify-center">
-                    <svg class="icon left-20 max-sm:left-5" xmlns="http://www.w3.org/2000/svg" width="30" height="32" viewBox="0 0 24 24" fill="none"><path d="M10.49 2.23 5.5 4.11c-1.15.43-2.09 1.79-2.09 3.01v7.43c0 1.18.78 2.73 1.73 3.44l4.3 3.21c1.41 1.06 3.73 1.06 5.14 0l4.3-3.21c.95-.71 1.73-2.26 1.73-3.44V7.12c0-1.23-.94-2.59-2.09-3.02l-4.99-1.87c-.85-.31-2.21-.31-3.04 0Z" stroke="#FF8A65"stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 12.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM12 12.5v3" stroke="red" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    <svg class="icon left-16 max-sm:left-2" xmlns="http://www.w3.org/2000/svg" width="30" height="32" viewBox="0 0 24 24" fill="none"><path d="M10.49 2.23 5.5 4.11c-1.15.43-2.09 1.79-2.09 3.01v7.43c0 1.18.78 2.73 1.73 3.44l4.3 3.21c1.41 1.06 3.73 1.06 5.14 0l4.3-3.21c.95-.71 1.73-2.26 1.73-3.44V7.12c0-1.23-.94-2.59-2.09-3.02l-4.99-1.87c-.85-.31-2.21-.31-3.04 0Z" stroke="#FF8A65"stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 12.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM12 12.5v3" stroke="red" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                         <input className="input w-4/5 max-sm:w-full" name="password" type="password" placeholder="password"   onChange={(e) => {setPassword(e.target.value);}} id="password"   value={password} required/>
                     </div>
                     {/* {passwordempty && <p className="text-red-500 mb-3 absolute" style={{zIndex: "999"}}>{passwordempty}</p>}
