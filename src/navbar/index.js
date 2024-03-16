@@ -12,7 +12,9 @@ import {
 } from "react-icons/io";
 import avatar from "../assets/img/avatars/avatar4.png";
 
-import Logout from "../Auth/logout"
+import axios from 'axios';
+
+
 const Navbar = (props) => {
   const navigate = useNavigate()
   const { onOpenSidenav, brandText } = props;
@@ -21,6 +23,8 @@ const Navbar = (props) => {
   const [user, setUser] = useState("");
   const [lsat, setlsat] = useState("");
   const [success, setSuccess] = useState("");
+
+
 
 
 
@@ -49,6 +53,7 @@ const Navbar = (props) => {
 
     fetchUserData();
   }, [navigate]);
+
 
 
   const logoutHandler = () => {
@@ -97,7 +102,7 @@ const Navbar = (props) => {
           </div>
     
           <div className="relative mt-[3px] flex h-[61px] w-[355px] flex-grow items-center justify-around gap-2 rounded-full bg-white px-2 py-2 shadow-xl shadow-shadow-500 dark:!bg-navy-800 dark:shadow-none md:w-[365px] md:flex-grow-0 md:gap-1 xl:w-[365px] xl:gap-2">
-            <div className="flex h-full items-center rounded-full bg-lightPrimary text-navy-700 dark:bg-navy-900 dark:text-white xl:w-[225px]">
+            {/* <div className="flex h-full items-center rounded-full bg-lightPrimary text-navy-700 dark:bg-navy-900 dark:text-white xl:w-[225px]">
               <p className="pl-3 pr-2 text-xl">
                 <FiSearch className="h-4 w-4 text-gray-400 dark:text-white" />
               </p>
@@ -106,7 +111,7 @@ const Navbar = (props) => {
                 placeholder="Search..."
                 class="block h-full w-full rounded-full bg-lightPrimary text-sm font-medium text-navy-700 outline-none placeholder:!text-gray-400 dark:bg-navy-900 dark:text-white dark:placeholder:!text-white sm:w-fit"
               />
-            </div>
+            </div> */}
             <span
               className="flex cursor-pointer text-xl text-gray-600 dark:text-white xl:hidden"
               onClick={onOpenSidenav}
@@ -114,7 +119,7 @@ const Navbar = (props) => {
               <FiAlignJustify className="h-5 w-5" />
             </span>
             {/* start Notification */}
-            <Dropdown
+            {/* <Dropdown
               button={
                 <p className="cursor-pointer">
                   <IoMdNotificationsOutline className="h-4 w-4 text-gray-600 dark:text-white" />
@@ -162,9 +167,9 @@ const Navbar = (props) => {
                 </div>
               }
               classNames={"py-2 top-4 -left-[230px] md:-left-[440px] w-max"}
-            />
+            /> */}
             {/* start Horizon PRO */}
-            <Dropdown
+            {/* <Dropdown
               button={
                 <p className="cursor-pointer">
                   <IoMdInformationCircleOutline className="h-4 w-4 text-gray-600 dark:text-white" />
@@ -205,7 +210,7 @@ const Navbar = (props) => {
               }
               classNames={"py-2 top-6 -left-[250px] md:-left-[330px] w-max"}
               animation="origin-[75%_0%] md:origin-top-right transition-all duration-300 ease-in-out"
-            />
+            /> */}
             <div
               className="cursor-pointer text-gray-600"
               onClick={() => {
@@ -227,11 +232,7 @@ const Navbar = (props) => {
             {/* Profile & Dropdown */}
             <Dropdown
               button={
-                <img
-                  className="h-10 w-10 rounded-full"
-                  src={`http://localhost:3001/${user.image}`}
-                  alt=""
-                />
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M12.12 12.78a.963.963 0 0 0-.24 0 3.27 3.27 0 0 1-3.16-3.27c0-1.81 1.46-3.28 3.28-3.28a3.276 3.276 0 0 1 .12 6.55ZM18.74 19.38A9.934 9.934 0 0 1 12 22c-2.6 0-4.96-.99-6.74-2.62.1-.94.7-1.86 1.77-2.58 2.74-1.82 7.22-1.82 9.94 0 1.07.72 1.67 1.64 1.77 2.58Z" stroke="#555555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z" stroke="#555555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               }
               children={
                 <div className="flex w-56 flex-col justify-start rounded-[20px] bg-white bg-cover bg-no-repeat shadow-xl shadow-shadow-500 dark:!bg-navy-700 dark:text-white dark:shadow-none">
@@ -251,12 +252,7 @@ const Navbar = (props) => {
                     >
                       Profile Settings
                     </a>
-                    <a
-                      href=" "
-                      className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
-                    >
-                      Newsletter Settings
-                    </a>
+                   
                     <button
                       onClick={logoutHandler}
                       className="mt-3 text-sm font-medium text-red-500 hover:text-red-500 transition duration-150 ease-out hover:ease-in"

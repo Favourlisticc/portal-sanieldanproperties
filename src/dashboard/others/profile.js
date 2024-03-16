@@ -44,6 +44,8 @@ function Profile() {
       fetchUserData();
     }, [navigate]);
 
+    console.log(user, lsat)
+
     const logoutHandler = () => {
 
         localStorage.removeItem('authToken');
@@ -71,30 +73,36 @@ function Profile() {
         setFile(imageUrl);
         setIsChanged(true);
     };
+    const updateUser = async () => {
+      try {
+          const formData = new FormData();
+          // Append user data to FormData
+          formData.append("email", user.email);
+          formData.append("firstName", user.firstName);
+          formData.append("lastName", user.lastName);
+          formData.append("country", user.country);
+          formData.append("phoneNumber", user.phoneNumber);
+  
+          await axios.put(`http://localhost:3001/dashboard/api/update-user/${user._id}`, formData, config);
+          setInitialUser(user); // Update initialUser with the updated user data
+          setIsChanged(false); // Reset isChanged to false after successful update
+          // Show success message
+          setSuccess("User data updated successfully!");
+          // Clear success message after 5 seconds
+          setTimeout(() => {
+              setSuccess("");
+          }, 5000);
+      } catch (error) {
+          setError(error.response.data.error);
+          console.log('Error updating user data:', error);
+          // Handle error state or display error message to the user
+          // Clear error message after 5 seconds
+          setTimeout(() => {
+              setError("");
+          }, 5000);
+      }
+  };
 
-      const updateUser = async () => {
-        try {
-            const formData = new FormData();
-            formData.append("image", file); // Append the image file to FormData
-
-            // Append other user data to FormData if needed
-                formData.append("email", user.email);
-                formData.append("firstName", user.firstName);
-                formData.append("lastName", user.lastName);
-                formData.append("country", user.country);
-
-
-            await axios.put(`http://localhost:3001/dashbaord/api/update-user/${user._id}`, formData, config);
-            setInitialUser(user); // Update initialUser with the updated user data
-            setIsChanged(false); // Reset isChanged to false after successful update
-            // Optionally, you can show a success message to the user
-            setSuccess("User data updated successfully!");
-        } catch (error) {
-            setError(error.response.data.error);
-            console.log('Error updating user data:', error);
-            // Handle error state or display error message to the user
-        }
-    };
 
     return(
         <div className="mt-16">
@@ -104,7 +112,7 @@ function Profile() {
                     style={{ zIndex: 9999, borderTopWidth: "6px" }}
                     class="fixed border-red-600 shadow-xl bg-white mt-24 xl:mt-28 mr-4 max-w-xs top-0 right-0 py-2 px-3"
                     >
-                    <h2 class="font-bold tracking-wider">Login Failed</h2>
+                    <h2 class="font-bold tracking-wider">Profile Update Failed</h2>
                     <p class="text-sm text-left tracking-wider pt-1">{error}</p>
                     </div>
                 )}
@@ -114,11 +122,11 @@ function Profile() {
                     style={{ zIndex: 9999, borderTopWidth: "6px" }}
                     class="fixed  border-green-600 shadow-xl bg-white mt-24 xl:mt-28 mr-4 max-w-xs top-0 right-0 py-2 px-3"
                     >
-                    <h2 class="font-bold tracking-wider">Account Setup</h2>
+                    <h2 class="font-bold tracking-wider">Data updated successful</h2>
                     <p class="text-sm text-left tracking-wider pt-1">{success}</p>
                     </div>
                 )}
-           <h1 className="text-left mb-10 font-semibold text-xl">Edit Your Account</h1>
+           <h1 className="text-left mb-10 font-semibold text-xl dark:text-white">Edit Your Account</h1>
 
            <div>
               <div class="mt-5 flex-col text-left">
@@ -140,6 +148,12 @@ function Profile() {
                 </div>
 
                 <div class="mt-5 flex-col text-left">
+                <label for="phoneNumber" className="dark:text-white">Phone Number</label><br/>
+                <input required="" type="string" name="phoneNumber" class="input" value={user.phoneNumber} onChange={handleInputChange} />
+
+                </div>
+
+                <div class="mt-5 flex-col text-left">
                 <select id="country" name="country" className="bg-white text-gray-800 mt-5 h-12 w-72 max-sm:w-72 rounded-md" value={user.country} onChange={handleInputChange} required>
                         {CountrySelect.map((country, index) => (
                             <option key={index} value={country}>
@@ -150,7 +164,7 @@ function Profile() {
 
                 </div>
 
-                <div className="mt-5">
+                {/* <div className="mt-5">
                  <div className="">
                  <img src={file} alt="profilepicture" className="w-26 h-20 rounded-md"value={user.image}/>
                  </div>
@@ -161,7 +175,7 @@ function Profile() {
                     <input type="file" onChange={handleChange} />
 
                     </div>
-                </div>
+                </div> */}
 
                 <div>
                 <button
