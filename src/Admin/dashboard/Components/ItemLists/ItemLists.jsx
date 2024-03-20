@@ -29,25 +29,7 @@ function ItemLists({ type }) {
                 link: 'See all users',
                 linkto: '/admin/dashboard/users',
             };
-            break;
-        case 'orders':
-            data = {
-                title: 'ORDERS',
-                isMoney: false,
-                count: 34,
-
-                icon: (
-                    <LocalGroceryStoreOutlinedIcon
-                        style={{
-                            color: '#AC7088',
-                            backgroundColor: '#FFF38C',
-                        }}
-                        className="icon"
-                    />
-                ),
-                link: 'View all orders',
-                linkto: '/admin/dashboard/orders',
-            };
+   
             break;
         case 'products':
             data = {
@@ -67,24 +49,7 @@ function ItemLists({ type }) {
                 linkto: '/admin/dashboard/products',
             };
             break;
-        case 'balance':
-            data = {
-                title: 'BALANCE',
-                count: 444,
-                isMoney: true,
-                icon: (
-                    <PaidOutlinedIcon
-                        style={{
-                            color: '#AC7088',
-                            backgroundColor: '#B1B2FF',
-                        }}
-                        className="icon"
-                    />
-                ),
-                link: 'See all details',
-                linkto: '/',
-            };
-            break;
+
         default:
             break;
     }
@@ -93,10 +58,7 @@ function ItemLists({ type }) {
         <div className="item_listss">
             <div className="name">
                 <p>{data.title}</p>
-                <span className="persentage positive">
-                    <KeyboardArrowUpIcon />
-                    20 %
-                </span>
+
             </div>
 
             <div className="counts">
@@ -108,7 +70,7 @@ function ItemLists({ type }) {
                 <Link to={data.linkto}>
                     <p>{data.link}</p>
                 </Link>
-                {data.icon}
+
             </div>
         </div>
     );

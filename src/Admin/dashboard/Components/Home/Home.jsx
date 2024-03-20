@@ -22,20 +22,20 @@ function Home() {
 
                 <div className="home_items">
                     <ItemLists type="user" />
-                    <ItemLists type="orders" />
+                    {/* <ItemLists type="orders" /> */}
                     <ItemLists type="products" />
-                    <ItemLists type="balance" />
+                    {/* <ItemLists type="balance" /> */}
                 </div>
 
-                <div className="chart_sec">
+                {/* <div className="chart_sec">
                     <ProgressBar />
                     <Chart height={450} title="Revenue" />
-                </div>
+                </div> */}
 
-                <div className="table">
+                {/* <div className="table">
                     <div className="title">Latest Transactions</div>
                     <TableList />
-                </div>
+                </div> */}
             </div>
         </div>
     );

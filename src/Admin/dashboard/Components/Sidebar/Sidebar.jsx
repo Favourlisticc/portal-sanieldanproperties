@@ -11,6 +11,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ColorContext } from '../../ColorContext/darkContext';
 import './Sidebar.scss';
+import logo from "../../../../public/sanieldan-logo-1-768x144.png"
 
 function Sidebar() {
     // color state management using react context
@@ -20,52 +21,47 @@ function Sidebar() {
         <div className="sidebar">
             <div className="logo">
                 <Link to="/" style={{ textDecoration: 'none' }}>
-                    <h3 className="text_none">Admin Dashboard</h3>
+                    <img src={logo} alt='logo'/>
+                    <h3 className="text_none text-xl">Admin Dashboard</h3>
                 </Link>
             </div>
 
             <div className="links">
                 <ul>
-                    <p className="spann">Main</p>
+
                     <Link to="/admin/dashboard" style={{ textDecoration: 'none' }}>
                         <li>
-                            <DashboardIcon className="icon" /> Dashboard
+                            <DashboardIcon className="icon" />
+                             <p className='ml-8'>Dashboard</p>
+
                         </li>
                     </Link>
 
-                    <p className="spann">lists</p>
                     <Link to="/admin/dashboard/users" style={{ textDecoration: 'none' }}>
-                        <li>
-                            <PersonIcon className="icon" /> Users
+                        <li className='pl-10'>
+                            <PersonIcon className="icon" />
+                            <p className='ml-8'>Users</p>
                         </li>
                     </Link>
 
                     <Link to="/admin/dashboard/products" style={{ textDecoration: 'none' }}>
                         <li>
-                            <TableChartIcon className="icon" /> Products
+                            <TableChartIcon className="icon" />
+                            <p className='ml-8'>Products</p>
                         </li>
                     </Link>
-                    <Link to="/admin/dashboard/orders" style={{ textDecoration: 'none' }}>
-                        <li>
-                            <CreditCardIcon className="icon" /> Orders
-                        </li>
-                    </Link>
+
+
+
+
                     <li>
-                        <CreditCardIcon className="icon" /> Balance
-                    </li>
-                    <li>
-                        <BarChartIcon className="icon" /> Status
+                        <AccountCircleIcon className="icon" />
+                        <p className='ml-8'>Profile</p>
                     </li>
 
-                    <p className="spann">Seetings</p>
                     <li>
-                        <AccountCircleIcon className="icon" /> Profile
-                    </li>
-                    <li>
-                        <SettingsRoundedIcon className="icon" /> Setting
-                    </li>
-                    <li>
-                        <LogoutIcon className="icon" /> Log Out
+                        <LogoutIcon className="icon" />
+                        <p className='ml-8'>Log Out</p>
                     </li>
                 </ul>
             </div>
