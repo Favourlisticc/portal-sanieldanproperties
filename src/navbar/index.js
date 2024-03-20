@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Dropdown from "../dropdown/index";
 import { FiAlignJustify } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
-import navbarimage from "../assets/img/layout/Navbar.png";
+
 import { BsArrowBarUp } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 import { RiMoonFill, RiSunFill } from "react-icons/ri";
@@ -10,7 +10,7 @@ import {
   IoMdNotificationsOutline,
   IoMdInformationCircleOutline,
 } from "react-icons/io";
-import avatar from "../assets/img/avatars/avatar4.png";
+
 
 import axios from 'axios';
 
@@ -252,7 +252,7 @@ const Navbar = (props) => {
                     >
                       Profile Settings
                     </a>
-                   
+
                     <button
                       onClick={logoutHandler}
                       className="mt-3 text-sm font-medium text-red-500 hover:text-red-500 transition duration-150 ease-out hover:ease-in"

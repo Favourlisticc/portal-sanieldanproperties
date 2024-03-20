@@ -16,6 +16,11 @@ function Signup () {
     const [country, setCountry] = useState("");
     const [error, setError] = useState("");
 
+    useEffect(() => {
+      if (localStorage.getItem("authUser")) {
+        navigate("/dashboard");
+      }
+    }, [navigate]);
 
 
 
@@ -43,8 +48,8 @@ function Signup () {
     
         try {
           const { data } = await axios.post(
-            // "http://localhost:3001/auth/signup",
-            "https://portal-sanieldanproperties-api.onrender.com/auth/signup",
+            "http://localhost:3005/auth/signup",
+            // "https://portal-sanieldanproperties-api.onrender.com/auth/signup",
             { username, email, firstName, lastName, country, password, phoneNumber },
             config
           );
@@ -80,11 +85,7 @@ function Signup () {
         }
       };
 
-      useEffect(() => {
-        if (localStorage.getItem("authUser")) {
-          navigate("/dashboard");
-        }
-      }, [navigate]);
+
 
 
 

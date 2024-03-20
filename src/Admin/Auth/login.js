@@ -17,52 +17,34 @@ function Login () {
 
 
 
-      const loginHandler = async (e) => {
+    const loginHandler = (e) => {
         e.preventDefault();
-
-
-
-        const config = {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        };
     
-        try {
-          const { data } = await axios.post(
-            "http://localhost:3001/auth/login",
-            // "https://www.portal-sanieldanproperties-api.onrender.com/auth/login",
-            { username, password },
-            config
-          );
+        // Static credentials
+        const staticUsername = 'adminfavour';
+        const staticPassword = 'favoursu55#';
     
-          localStorage.setItem("authToken", data.Token);
-          localStorage.setItem("authUser", JSON.stringify(data.user));
-          
-
-          setSuccess("Login successful! You're being redirected to your dashboard");
-          setUsername("");
-          setPassword("");
-          setTimeout(() => {
-            setSuccess("");
-            navigate("/dashboard");
-          }, 5000);
-        } catch (error) {
-          setError(error.response.data.error);
-
-          setTimeout(() => {
-          setPassword("");
-
-          navigate("/");
-        }, 5000);
+        // Check if the entered username and password match the static credentials
+        if (username === staticUsername && password === staticPassword) {
+            // If credentials match, set success message and redirect to dashboard
+            setSuccess("Login successful! You're being redirected to your dashboard");
+            setUsername("");
+            setPassword("");
+            setTimeout(() => {
+                setSuccess("");
+                navigate("/admin/dashboard");
+            }, 5000);
+        } else {
+            // If credentials don't match, set error message
+            setError('Invalid username or password');
+    
+            // Clear the password field after 5 seconds
+            setTimeout(() => {
+                setPassword("");
+            }, 5000);
         }
-      };
+    };
 
-      useEffect(() => {
-        if (localStorage.getItem("authUser")) {
-          navigate("/dashboard");
-        }
-      }, [navigate]);
 
 
 
@@ -72,16 +54,10 @@ function Login () {
             <div className="background-image text-white ml-auto mr-auto">
                 <div className="gg">
                  <div>
-                    <div className="flex text-5xl justify-center font-bold">
+                    <div className="flex text-5xl justify-center font-bold max-sm:text-2xl">
                     <h1 className="">Welcome </h1>
-                    <h1 className=" text-red-500"> Back</h1>
+                    <h1 className=" text-red-500"> Back Admin</h1>
                     </div>
-                  <div className="flex justify-center my-3">
-                    <p class="border-2 bg-white h-0 w-32 "></p>
-                  </div>
-
-                       <p className=" mx-80 mt-2 max-sm:mx-0 ">Welcome to our portal! Please enter your login credentials to access your account. If you don’t have an account yet, please <Link href="/signup" className="text-red-500">sign up</Link> to get started.</p>
-
 
                  </div>
                 </div>
@@ -138,15 +114,10 @@ function Login () {
 
                     {error && <p className="text-red-500 mb-3">{error}</p>}
 
-                    <div className="mt-20">
+                    <div className="mt-20 mb-10">
                         <button type="submit" id="deed1" className="bg-red-400 text-white w-72 h-10 rounded text-lg" >Log In</button>
                     </div>
 
-                    <div className="mt-10 mb-5">
-                        <Link to="/signup"  className="ml-10 underline max-sm:ml-0">Register</Link>
-
-                        <Link to="/forgot-password" className="float-right mr-40 underline max-sm:mr-10">forgot password?</Link>
-                    </div>
 
                 </div>
 
