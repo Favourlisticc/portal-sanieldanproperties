@@ -16,7 +16,7 @@ function Profile() {
 
 
   
-  
+
     const config = {
       headers: {
       "Content-Type": "application/json",
@@ -82,7 +82,7 @@ function Profile() {
           formData.append("lastName", user.lastName);
           formData.append("country", user.country);
           formData.append("phoneNumber", user.phoneNumber);
-  
+
           await axios.put(`https://portal-sanieldanproperties-api.onrender.com/dashboard/api/update-user/${user._id}`, formData, config);
           setInitialUser(user); // Update initialUser with the updated user data
           setIsChanged(false); // Reset isChanged to false after successful update

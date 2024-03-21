@@ -123,7 +123,7 @@ function DataTable() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:3005/admin/users');
+                const response = await axios.get('https://portal-sanieldanproperties-api.onrender.com/admin/users');
                 // Add id property to each row using _id from the response
                 const modifiedData = response.data.map((row) => ({
                     ...row,
@@ -163,14 +163,12 @@ function DataTable() {
         },
         { field: 'email', headerName: 'Email', width: 280 },
         {
-            field: 'Balance',
-            headerName: 'Balance',
+            field: 'balance',
+            headerName: '₦ Balance',
             width: 150,
-            renderCell: (param) => (
-                <div className={`status ${param.row.status}`}>{param.row.status}</div>
-            ),
+
         },
-        { field: 'Phone number', headerName: 'Phone number', width: 120 },
+        { field: 'phoneNumber', headerName: 'Phone number', width: 120 },
         {
             field: 'action',
             headerName: 'Action',
