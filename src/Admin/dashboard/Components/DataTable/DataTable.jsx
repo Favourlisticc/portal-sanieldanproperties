@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import { DataGrid } from '@mui/x-data-grid';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import man1 from '../../Images/man1.jpg';
 import man2 from '../../Images/man2.jpg';
@@ -10,108 +10,135 @@ import woman1 from '../../Images/woman1.jpg';
 import woman2 from '../../Images/woman2.jpg';
 import './datatable.scss';
 
+import axios from 'axios';
+
+
+
 // Replace this data with your own
-const userData = [
-    {
-        id: '630343eb94c2812e4cd7e45d',
-        username: 'Devid434',
-        email: 'devidbom232@gmail.com',
-        image: man1,
-        status: 'active',
-        age: '24',
-    },
-    {
-        id: '6303234eb94c2812e4cd7e45e',
-        username: 'Johnn434',
-        email: 'john03434@gmail.com',
-        image: man2,
-        status: 'passive',
-        age: '29',
-    },
-    {
-        id: 'e40343eb94c2812e4cd7e4233',
-        username: 'Dilvib1233',
-        email: 'dilvibhasanjohn1233@gmail.com',
-        image: man3,
-        status: 'active',
-        age: '20',
-    },
-    {
-        id: '930343eb94c2812e4cd7e45g',
-        username: 'DoeJelia88',
-        email: 'doejelia88@gmail.com',
-        image: woman1,
-        status: 'active',
-        age: '23',
-    },
-    {
-        id: '60443eb94c2812e4cd7e45ii',
-        username: 'Lucas0984',
-        email: 'lucashossel@gmail.com',
-        image: man4,
-        status: 'passive',
-        age: '30',
-    },
-    {
-        id: 'e23343eb94c2812e4cd7e45kk',
-        username: 'Annie765',
-        email: 'anniejhon@gmail.com',
-        image: woman2,
-        status: 'active',
-        age: '23',
-    },
-    {
-        id: '63asd34eb94c2812e4cd7e45e',
-        username: 'Johnn434',
-        email: 'john03434@gmail.com',
-        image: man2,
-        status: 'passive',
-        age: '29',
-    },
-    {
-        id: 'e40gfdeb94c2812e4cd7e4233',
-        username: 'Dilvib1233',
-        email: 'dilvibhasanjohn1233@gmail.com',
-        image: man3,
-        status: 'active',
-        age: '20',
-    },
-    {
-        id: '60443lkjc2812e4cd7e45ii',
-        username: 'Lucas0984',
-        email: 'lucashossel@gmail.com',
-        image: man4,
-        status: 'passive',
-        age: '30',
-    },
-    {
-        id: '930343eb9465512e4cd7e45g',
-        username: 'DoeJelia88',
-        email: 'doejelia88@gmail.com',
-        image: woman1,
-        status: 'active',
-        age: '23',
-    },
-    {
-        id: '60443eb94c8ui2e4cd7e45ii',
-        username: 'Lucas0984',
-        email: 'lucashossel@gmail.com',
-        image: man4,
-        status: 'passive',
-        age: '30',
-    },
-    {
-        id: '6303234eb9987812ed7e45e',
-        username: 'Johnn434',
-        email: 'john03434@gmail.com',
-        image: man2,
-        status: 'passive',
-        age: '29',
-    },
-];
+// const userData = [
+//     {
+//         id: '630343eb94c2812e4cd7e45d',
+//         username: 'Devid434',
+//         email: 'devidbom232@gmail.com',
+//         image: man1,
+//         status: 'active',
+//         age: '24',
+//     },
+//     {
+//         id: '6303234eb94c2812e4cd7e45e',
+//         username: 'Johnn434',
+//         email: 'john03434@gmail.com',
+//         image: man2,
+//         status: 'passive',
+//         age: '29',
+//     },
+//     {
+//         id: 'e40343eb94c2812e4cd7e4233',
+//         username: 'Dilvib1233',
+//         email: 'dilvibhasanjohn1233@gmail.com',
+//         image: man3,
+//         status: 'active',
+//         age: '20',
+//     },
+//     {
+//         id: '930343eb94c2812e4cd7e45g',
+//         username: 'DoeJelia88',
+//         email: 'doejelia88@gmail.com',
+//         image: woman1,
+//         status: 'active',
+//         age: '23',
+//     },
+//     {
+//         id: '60443eb94c2812e4cd7e45ii',
+//         username: 'Lucas0984',
+//         email: 'lucashossel@gmail.com',
+//         image: man4,
+//         status: 'passive',
+//         age: '30',
+//     },
+//     {
+//         id: 'e23343eb94c2812e4cd7e45kk',
+//         username: 'Annie765',
+//         email: 'anniejhon@gmail.com',
+//         image: woman2,
+//         status: 'active',
+//         age: '23',
+//     },
+//     {
+//         id: '63asd34eb94c2812e4cd7e45e',
+//         username: 'Johnn434',
+//         email: 'john03434@gmail.com',
+//         image: man2,
+//         status: 'passive',
+//         age: '29',
+//     },
+//     {
+//         id: 'e40gfdeb94c2812e4cd7e4233',
+//         username: 'Dilvib1233',
+//         email: 'dilvibhasanjohn1233@gmail.com',
+//         image: man3,
+//         status: 'active',
+//         age: '20',
+//     },
+//     {
+//         id: '60443lkjc2812e4cd7e45ii',
+//         username: 'Lucas0984',
+//         email: 'lucashossel@gmail.com',
+//         image: man4,
+//         status: 'passive',
+//         age: '30',
+//     },
+//     {
+//         id: '930343eb9465512e4cd7e45g',
+//         username: 'DoeJelia88',
+//         email: 'doejelia88@gmail.com',
+//         image: woman1,
+//         status: 'active',
+//         age: '23',
+//     },
+//     {
+//         id: '60443eb94c8ui2e4cd7e45ii',
+//         username: 'Lucas0984',
+//         email: 'lucashossel@gmail.com',
+//         image: man4,
+//         status: 'passive',
+//         age: '30',
+//     },
+//     {
+//         id: '6303234eb9987812ed7e45e',
+//         username: 'Johnn434',
+//         email: 'john03434@gmail.com',
+//         image: man2,
+//         status: 'passive',
+//         age: '29',
+//     },
+// ];
 
 function DataTable() {
-    const [data, setData] = useState(userData);
+
+
+    const [data, setData] = useState([]);
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:3005/admin/users');
+                // Add id property to each row using _id from the response
+                const modifiedData = response.data.map((row) => ({
+                    ...row,
+                    id: row._id, // Use _id as the id property
+                }));
+                setData(modifiedData);
+            } catch (error) {
+                console.error('Error fetching users:', error);
+            }
+        };
+    
+        fetchData();
+    }, []);
+
+    console.log(data)
 
     const handleDlt = (id) => {
         setData(data.filter((item) => item.id !== id));
@@ -124,7 +151,7 @@ function DataTable() {
             width: 310,
             renderCell: (param) => (
                 <div className="userr">
-                    <img src={param.row.image} alt="User Image" className="userr_image" />
+                    {/* <img src={param.row.image} alt="User Image" className="userr_image" /> */}
                     {param.row.id}
                 </div>
             ),
@@ -136,14 +163,14 @@ function DataTable() {
         },
         { field: 'email', headerName: 'Email', width: 280 },
         {
-            field: 'status',
-            headerName: 'Status',
+            field: 'Balance',
+            headerName: 'Balance',
             width: 150,
             renderCell: (param) => (
                 <div className={`status ${param.row.status}`}>{param.row.status}</div>
             ),
         },
-        { field: 'age', headerName: 'Age', width: 120 },
+        { field: 'Phone number', headerName: 'Phone number', width: 120 },
         {
             field: 'action',
             headerName: 'Action',
