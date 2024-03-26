@@ -48,8 +48,8 @@ function Signup () {
     
         try {
           const { data } = await axios.post(
-            "http://localhost:3005/auth/signup",
-            // "https://portal-sanieldanproperties-api.onrender.com/auth/signup",
+            // "http://localhost:3005/auth/signup",
+            "https://portal-sanieldanproperties-api.onrender.com/auth/signup",
             { username, email, firstName, lastName, country, password, phoneNumber },
             config
           );

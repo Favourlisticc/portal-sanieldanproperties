@@ -159,7 +159,7 @@ code {
   font-family: monospace;
   background-color: #f3f7fe;
   color: #3b82f6;
-  border: none;
+  border: 0.5px solid rgb(113, 113, 238);
   border-radius: 8px;
   
   height: 45px;

@@ -44,17 +44,9 @@ function Sidebar() {
                         </li>
                     </Link>
 
-                    <Link to="/admin/dashboard/products" style={{ textDecoration: 'none' }}>
-                        <li>
-                            <TableChartIcon className="icon" />
-                            <p className='ml-8'>Products</p>
-                        </li>
-                    </Link>
 
 
-
-
-                    <li>
+                    {/* <li>
                         <AccountCircleIcon className="icon" />
                         <p className='ml-8'>Profile</p>
                     </li>
@@ -62,7 +54,7 @@ function Sidebar() {
                     <li>
                         <LogoutIcon className="icon" />
                         <p className='ml-8'>Log Out</p>
-                    </li>
+                    </li> */}
                 </ul>
             </div>
         </div>

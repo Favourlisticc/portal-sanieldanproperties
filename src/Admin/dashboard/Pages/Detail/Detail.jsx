@@ -24,7 +24,10 @@ function Detail() {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await fetch(`http://localhost:3005/admin/users/${userId}`); // Adjust the API endpoint accordingly
+                const response = await fetch(
+                  // `http://localhost:3005/admin/users/${userId}`,
+                  `https://www.portal-sanieldanproperties-api.onrender.com/admin/users/${userId}`,
+                  ); // Adjust the API endpoint accordingly
                 if (response.ok) {
                     const User = await response.json();
                     setUser(User);
@@ -64,21 +67,24 @@ function Detail() {
 
     const updateUser = async () => {
       try {
-          const formData = new FormData();
-          // Append user data to FormData
-          formData.append("balance", User.balance);
-          formData.append("totalreferrels", User.totalrefferls);
-          formData.append("paidrefferals",User.paidreffers);
-          formData.append("unpaid", User.unpaid);
-          formData.append("totalpayout", User.totalpayouttrans);
-          formData.append("totaltransactions", User.totaltransactions);
+        const updatedData = {
+          balance: User.balance,
+          totalrefferls: User.totalrefferls,
+          paidreffers: User.paidreffers,
+          unpaid: User.unpaid,
+          totalpayouttrans: User.totalpayouttrans,
+          totaltransactions: User.totaltransactions,
+      };
 
-          console.log(formData)
-          await axios.put(`https://portal-sanieldanproperties-api.onrender.com/admin/update-user/${userId}`, formData, config);
+          console.log(updatedData)
+          await axios.put(
+            // `http://localhost:3005/admin/update-user/${userId}`,
+            `https://www.portal-sanieldanproperties-api.onrender.com/admin/update-user/${userId}`,
+            updatedData, config);
           setInitialUser(User); // Update initialUser with the updated user data
           setIsChanged(false); // Reset isChanged to false after successful update
           // Show success message
-          console.log(User)
+
           setSuccess(`${User.username} User data updated successfully!`);
           // Clear success message after 5 seconds
           setTimeout(() => {
@@ -95,7 +101,6 @@ function Detail() {
       }
   };
 
-  console.log(updateUser)
 
     return (
         <div className="details">
@@ -110,27 +115,27 @@ function Detail() {
 
                     {User && (
                         <div className="border p-3 shadow w-96">
-                            <img src={userPic} alt="user" className="user_image" />
+                            <img src={User.image} alt="user" className="rounded " />
 
                             <div className="text-left">
-                                <p className="flex justify-between">FullName: <p className=''>{User.firstName} {User.lastName}</p> </p><hr />
-                                <p className="flex justify-between">Balance: <p> ₦ {User.balance}</p></p><hr />
-                                <p className="flex justify-between">Email: <p>{User.email}</p></p><hr />
-                                <p className="flex justify-between">Country: <p>{User.country}</p></p><hr />
-                                <p className="flex justify-between">PhoneNumber: <p>{User.phoneNumber}</p></p><hr />
-                                <p className="flex justify-between">TotalReferrels: <p>{User.totalrefferls}</p></p><hr />
-                                <p className="flex justify-between">PaidRefferals: <p> ₦ {User.paidreffers}</p></p><hr />
-                                <p className="flex justify-between">Unpaid: <p>₦ {User.unpaid}</p></p><hr />
-                                <p className="flex justify-between">TotalPayout: <p> ₦ {User.totalpayouttrans}</p></p><hr />
+                                <p className="flex justify-between py-2">FullName: <p className=''>{User.firstName} {User.lastName}</p> </p><hr />
+                                <p className="flex justify-between py-2">Balance: <p> ₦ {User.balance}</p></p><hr />
+                                <p className="flex justify-between py-2">Email: <p>{User.email}</p></p><hr />
+                                <p className="flex justify-between py-2">Country: <p>{User.country}</p></p><hr />
+                                <p className="flex justify-between py-2">PhoneNumber: <p>{User.phoneNumber}</p></p><hr />
+                                <p className="flex justify-between py-2">TotalReferrels: <p>{User.totalrefferls}</p></p><hr />
+                                <p className="flex justify-between py-2">PaidRefferals: <p> ₦ {User.paidreffers}</p></p><hr />
+                                <p className="flex justify-between py-2">Unpaid: <p>₦ {User.unpaid}</p></p><hr />
+                                <p className="flex justify-between py-2">TotalPayout: <p> ₦ {User.totalpayouttrans}</p></p><hr />
 
-                                <p className="flex justify-between">Total Transactions: <p>{User.totaltransactions}</p></p><hr />
-                                <p className="flex justify-between">Account Details:</p>
+                                <p className="flex justify-between py-2">Total Transactions: <p>{User.totaltransactions}</p></p><hr />
+                                <p className="flex justify-between py-2">Account Details:</p>
                                     <ul className='ml-3'>
                                         {User.acctdetails.map((detail, index) => (
                                             <li key={index}>
-                                              <p className='flex justify-between '>BankName<p>{detail.bankName}</p></p><hr />
-                                              <p className='flex justify-between '>Account Number<p>{detail.bankNumber}</p></p><hr />
-                                              <p className='flex justify-between'>Owerner FullName<p>{detail.bankFullName}</p></p><hr />
+                                              <p className='flex justify-between py-2 '>BankName<p>{detail.bankName}</p></p><hr />
+                                              <p className='flex justify-between py-2 '>Account Number<p>{detail.bankNumber}</p></p><hr />
+                                              <p className='flex justify-between py-2'>Owerner FullName<p>{detail.bankFullName}</p></p><hr />
                                               </li>
 
 
@@ -170,16 +175,16 @@ function Detail() {
                   </div>
 
                   <div class="mt-5 flex-col text-left">
-                    <label for="totalreferrels" className="dark:text-white">Total Referrels</label><br/>
-                    <input required="" type="text" name="totalreferrels" class="input" value={User.totalrefferls} onChange={handleInputChange} />
+                    <label for="totalrefferls" className="dark:text-white">Total Referrels</label><br/>
+                    <input required="" type="text" name="totalrefferls" class="input" value={User.totalrefferls} onChange={handleInputChange} />
 
                   </div>
               </div>
 
               <div className='flex justify-between max-sm:flex-col'>
                 <div class="mt-5 flex-col text-left">
-                  <label for="paidrefferals" className="dark:text-white">Paid Refferals</label><br/>
-                  <input required="" type="text" name="paidrefferals" class="input" value={User.paidreffers} onChange={handleInputChange} />
+                  <label for="paidreffers" className="dark:text-white">Paid Refferals</label><br/>
+                  <input required="" type="text" name="paidreffers" class="input" value={User.paidreffers} onChange={handleInputChange} />
 
                 </div>
 
@@ -192,8 +197,8 @@ function Detail() {
 
               <div className='flex justify-between max-sm:flex-col'>
                 <div class="mt-5 flex-col text-left">
-                  <label for="totalpayout" className="dark:text-white">Total Payout Transactions</label><br/>
-                  <input required="" type="text" name="totalpayoutt" class="input" value={User.totalpayouttrans} onChange={handleInputChange} />
+                  <label for="totalpayouttrans" className="dark:text-white">Total Payout Transactions</label><br/>
+                  <input required="" type="text" name="totalpayouttrans" class="input" value={User.totalpayouttrans} onChange={handleInputChange} />
 
                 </div>
 

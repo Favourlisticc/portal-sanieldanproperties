@@ -23,8 +23,8 @@ function Home() {
                 <div className="home_items">
                     <ItemLists type="user" />
                     {/* <ItemLists type="orders" /> */}
-                    <ItemLists type="products" />
-                    {/* <ItemLists type="balance" /> */}
+                    {/* <ItemLists type="products" />
+                    <ItemLists type="balance" /> */}
                 </div>
 
                 {/* <div className="chart_sec">

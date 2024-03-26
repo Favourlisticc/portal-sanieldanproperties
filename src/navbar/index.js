@@ -21,8 +21,9 @@ const Navbar = (props) => {
   const [darkmode, setDarkmode] = React.useState(false);
 
   const [user, setUser] = useState("");
-  const [lsat, setlsat] = useState("");
+  const [lsat, setlsat] = useState(localStorage.getItem("authUser") || "");
   const [success, setSuccess] = useState("");
+  const [userImage, setUserImage] = useState("");
 
 
 
@@ -45,6 +46,8 @@ const Navbar = (props) => {
         const data = JSON.parse(localStorage.getItem("authUser"));
         setUser(data);
         setlsat(localStorage.getItem("authUser"));
+
+        fetchUserImage();
       } catch (error) {
         console.log('Error fetching user data:', error);
         // Handle error state or display error message to the user
@@ -52,19 +55,46 @@ const Navbar = (props) => {
     };
 
     fetchUserData();
+
   }, [navigate]);
 
 
 
   const logoutHandler = () => {
 
-    localStorage.removeItem('authToken');
     localStorage.removeItem('authUser');
     navigate("/");
   };
 
 
   console.log(user, lsat)
+
+  const fetchUserImage = async () => {
+    const username = user.username;
+    try {
+      if (!username) {
+        console.log('Username is undefined or invalid');
+        return;
+      }
+
+      const response = await axios.get(
+        // `http://localhost:3005/dashboard/user/image/${user._id}`,
+        `https://www.portal-sanieldanproperties-api.onrender.com/user/image/${user._id}`,
+        config);
+      if (response.status === 200) {
+        const imageUrl = response.data.image;  // Assuming the response contains the imageUrl
+        setUserImage(imageUrl);
+        console.log(imageUrl);
+      } else {
+        console.log('Error fetching user image:', response.status);
+      }
+    } catch (error) {
+      console.log('Error fetching user image:', error);
+    }
+  }
+
+
+
 
 
 
@@ -232,7 +262,8 @@ const Navbar = (props) => {
             {/* Profile & Dropdown */}
             <Dropdown
               button={
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M12.12 12.78a.963.963 0 0 0-.24 0 3.27 3.27 0 0 1-3.16-3.27c0-1.81 1.46-3.28 3.28-3.28a3.276 3.276 0 0 1 .12 6.55ZM18.74 19.38A9.934 9.934 0 0 1 12 22c-2.6 0-4.96-.99-6.74-2.62.1-.94.7-1.86 1.77-2.58 2.74-1.82 7.22-1.82 9.94 0 1.07.72 1.67 1.64 1.77 2.58Z" stroke="#555555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z" stroke="#555555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <img src={userImage} alt='user-image' className='w-10 rounded-full h-10'/>
+
               }
               children={
                 <div className="flex w-56 flex-col justify-start rounded-[20px] bg-white bg-cover bg-no-repeat shadow-xl shadow-shadow-500 dark:!bg-navy-700 dark:text-white dark:shadow-none">

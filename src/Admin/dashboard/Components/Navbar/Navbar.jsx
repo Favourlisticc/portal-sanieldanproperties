@@ -37,28 +37,16 @@ function Navbar() {
     return (
         <div className="navbarr">
             <div className="navbar_main">
-                <div className="menu_logo">
+                <div className="menu_logo max-sm:block hidden">
                     {toggle ? (
                         <CloseIcon className="menu_icon" onClick={handleToggle} />
                     ) : (
                         <MenuIcon className="menu_icon" onClick={handleToggle} />
                     )}
-
-                    <Link to="/" style={{ textDecoration: 'none' }}>
-                        <h3 className="text_none">Dashboard</h3>
-                    </Link>
                 </div>
-                <div className="search">
-                    <input type="text" placeholder="Search.." />
 
-                    <SearchIcon className="search_icon" />
-                </div>
 
                 <div className="item_lists">
-                    <div className="item item_lan">
-                        <LanguageIcon className="item_icon" />
-                        <p>English</p>
-                    </div>
                     <div className="item">
                         {!darkMode ? (
                             <DarkModeIcon
@@ -72,22 +60,9 @@ function Navbar() {
                             />
                         )}
                     </div>
-                    <div className="item">
-                        <FullscreenExitIcon className="item_icon" />
-                    </div>
 
-                    <div className="item">
-                        <ChatBubbleOutlineIcon className="item_icon" />
-                        <span className="badge">2</span>
-                    </div>
-                    <div className="item">
-                        <NotificationsNoneIcon className="item_icon" />
-                        <span className="badge">1</span>
-                    </div>
 
-                    <div className="item">
-                        <img className="admin_pic" src={admin} alt="admin" />
-                    </div>
+                   
                 </div>
             </div>
 

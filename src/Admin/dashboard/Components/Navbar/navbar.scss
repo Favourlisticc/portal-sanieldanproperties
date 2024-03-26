@@ -11,8 +11,7 @@ $text_color: #3d3c42;
     border-bottom: 1px solid #eee;
 
     .menu_logo {
-      display: none !important;
-      display: flex;
+
       align-items: center;
 
       .menu_icon {
@@ -96,7 +95,7 @@ $text_color: #3d3c42;
   }
 
   .res_navbar {
-    display: none;
+   
     .res_nav_menu {
       display: block;
       position: fixed !important;

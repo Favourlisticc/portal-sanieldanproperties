@@ -3,20 +3,39 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import LocalGroceryStoreOutlinedIcon from '@mui/icons-material/LocalGroceryStoreOutlined';
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import React from 'react';
 import { Link } from 'react-router-dom';
 import './itemlists.scss';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
 function ItemLists({ type }) {
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+        // Fetch user count from backend
+        const fetchUserCount = async () => {
+            try {
+                const response = await axios.get(
+                    // 'http://localhost:3005/admin/user/count',
+                    "https://www.portal-sanieldanproperties-api.onrender.com/admin/count",);
+                setCount(response.data.count);
+            } catch (error) {
+                console.error('Error fetching user count:', error);
+            }
+        };
+
+        fetchUserCount();
+    }, []);
+
     let data;
 
-    // Dynamicaly change the ui content
+    // Dynamically change the UI content
     switch (type) {
         case 'user':
             data = {
                 title: 'USERS',
                 isMoney: false,
-                count: 232,
+                count: count,
                 icon: (
                     <PermIdentityIcon
                         style={{
@@ -29,13 +48,12 @@ function ItemLists({ type }) {
                 link: 'See all users',
                 linkto: '/admin/dashboard/users',
             };
-   
             break;
         case 'products':
             data = {
                 title: 'PRODUCTS',
                 isMoney: true,
-                count: 107,
+                count: 107, // Hardcoded count for now
                 icon: (
                     <AttachMoneyOutlinedIcon
                         style={{
@@ -58,7 +76,6 @@ function ItemLists({ type }) {
         <div className="item_listss">
             <div className="name">
                 <p>{data.title}</p>
-
             </div>
 
             <div className="counts">
@@ -70,7 +87,6 @@ function ItemLists({ type }) {
                 <Link to={data.linkto}>
                     <p>{data.link}</p>
                 </Link>
-
             </div>
         </div>
     );
